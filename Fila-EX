@@ -1,0 +1,151 @@
+public class Main {
+  private No primeiro;
+  private No ultimo;
+  private String nomeDaFila;
+
+  //Construtor da classe Fila
+  public Main(String nome) {
+    nomeDaFila = nome;
+    primeiro = ultimo = null;
+  }
+
+  public Main() {
+    nomeDaFila = "Fila Teste";
+    primeiro = ultimo = null;
+  }
+
+  public void Enfileira(String item){
+    if (Vazia())
+      primeiro = ultimo = new No(item);
+    else {
+      ultimo.setProx(new No(item));
+      ultimo = ultimo.getProx();
+    }
+  }
+
+  public String Desinfileira(){
+    if (Vazia()){
+      return null;
+    }
+    String item = primeiro.getDado();
+    if (primeiro == ultimo){
+      primeiro = ultimo = null;
+      return item;
+    }else{
+      ultimo = primeiro.getProx();
+      primeiro = primeiro.getProx();
+      if (primeiro.getProx() == null){
+        ultimo = primeiro;
+        return null;
+      }else{
+        ultimo = primeiro.getProx();
+      }
+      return item;
+    }
+  }
+
+  public String PrimeiroValor(){
+    String valor = primeiro.getDado();
+    return valor;
+  }
+
+  public String UltimoValor(){
+    String valor = ultimo.getDado();
+    return valor;
+  }
+
+  public boolean Vazia() {
+    return primeiro == null;
+  }
+
+  public String Pares(){
+    String temp = "";
+    if (Vazia()) {
+      temp += "Fila vazia";
+      return temp;
+    }
+    temp += "Os itens pares são:\n\n";
+    No atual = primeiro;
+    while (atual != null) {
+      atual = atual.getProx();
+      temp += atual.getDado() + ", ";
+      atual = atual.getProx();
+    }
+    temp += "\n";
+    return temp;
+  }
+
+  public String Impares(){
+    String temp = "";
+    if (Vazia()) {
+      temp += "Fila vazia";
+      return temp;
+    }
+    temp += "Os itens Impares são:\n\n";
+    No atual = primeiro;
+    while (atual != null) {
+      temp += atual.getDado() + ", ";
+      atual = atual.getProx();
+      atual = atual.getProx();
+    }
+    temp += "\n";
+    return temp;
+  }
+
+  public int NumElementos(){
+    int cont=0;
+
+    if (Vazia()) {
+      System.out.println("O número de elementos nessa fila é: \n");
+      return 0;
+    }
+
+    No atual = primeiro;
+    while (atual != null) {
+      atual = atual.getProx();
+      cont++;
+    }
+    System.out.println("O número de elementos nessa fila é: \n");
+    return cont;
+  }
+
+  public String Inverter(){
+    Main fTtemp = new Main();
+    String temp = "";
+    if (Vazia()) {
+      temp += "Fila vazia";
+      return temp;
+    }
+    temp += "Os itens invertidos são:\n\n";
+    No atual = primeiro;
+    while (atual != null){
+      fTtemp.Enfileira(atual.getDado());
+      atual = atual.getProx();
+    }
+    while (fTtemp.Vazia() == false) {
+      temp += fTtemp.UltimoValor() + ", ";
+      fTtemp.Desinfileira();
+    }
+    temp += "\n";
+    return temp;
+  }
+
+  public static void main(String[] args) {
+    Main f1 = new Main();
+    f1.Enfileira("el01");
+    f1.Enfileira("el02");
+    f1.Enfileira("el03");
+    f1.Enfileira("el04");
+    
+    System.out.println(f1.PrimeiroValor());
+    System.out.println(f1.UltimoValor());
+
+    System.out.println(f1.Pares());
+    System.out.println(f1.Impares());
+
+    System.out.println(f1.NumElementos());
+
+    System.out.println(f1.Inverter());
+  } 
+
+}
