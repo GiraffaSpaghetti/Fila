@@ -58,38 +58,34 @@ public class Main {
     return primeiro == null;
   }
 
-  public String Pares(){
-    String temp = "";
+  public void Pares(){
+    int cont=0;
     if (Vazia()) {
-      temp += "Fila vazia";
-      return temp;
+      System.out.println("\nFila contem 0 elementos pares");
+      return;
     }
-    temp += "Os itens pares são:\n\n";
     No atual = primeiro;
     while (atual != null) {
       atual = atual.getProx();
-      temp += atual.getDado() + ", ";
+      cont++;
       atual = atual.getProx();
     }
-    temp += "\n";
-    return temp;
+    System.out.println("\nFila contem "+ cont +" elementos pares");
   }
 
-  public String Impares(){
-    String temp = "";
+  public void Impares(){
+    int cont=0;
     if (Vazia()) {
-      temp += "Fila vazia";
-      return temp;
+      System.out.println("\nFila contem 0 elementos ímpares");
+      return;
     }
-    temp += "Os itens Impares são:\n\n";
     No atual = primeiro;
     while (atual != null) {
-      temp += atual.getDado() + ", ";
       atual = atual.getProx();
       atual = atual.getProx();
+      cont++;
     }
-    temp += "\n";
-    return temp;
+    System.out.println("\nFila contem "+ cont +" elementos ímpares");
   }
 
   public int NumElementos(){
@@ -140,8 +136,8 @@ public class Main {
     System.out.println(f1.PrimeiroValor());
     System.out.println(f1.UltimoValor());
 
-    System.out.println(f1.Pares());
-    System.out.println(f1.Impares());
+    f1.Pares();
+    f1.Impares();
 
     System.out.println(f1.NumElementos());
 
